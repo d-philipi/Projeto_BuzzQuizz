@@ -8,10 +8,74 @@
         <title>BuzzQuizz</title>
 
         <link rel="stylesheet" href="reset.css" />
-        <link rel="stylesheet" media="(max-width: 900px)" href="estilo.css" />
+        <link rel="stylesheet" media="(max-width: 1100px)" href="estilo.css" />
         <link rel="stylesheet" href="estilo.css" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
     </head>
     <body>
+        <main class="tela-1 selecionada">
+            <header><span>BuzzQuizz</span></header>
+            <div class="container">
+                <section>
+                    <span>Você não criou nenhum <br> quizz ainda :(</span>
+                    <button>Criar Quizz</button>
+                </section>
+                <span>Todos os Quizzes</span>
+                <ul>
+                    <li>
+                        <figure>
+                            <img src="./midia/Simpsons.png">
+                            <figcaption>Acerte os personagens corretos dos Simpsons e prove seu amor!</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="./midia/Preguiça.png">
+                            <figcaption>O quanto você é de boas?</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="./midia/Simpsons.png">
+                            <figcaption>Acerte os personagens corretos dos Simpsons e prove seu amor!</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="./midia/Simpsons.png">
+                            <figcaption>Acerte os personagens corretos dos Simpsons e prove seu amor!</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="./midia/Preguiça.png">
+                            <figcaption>O quanto você é de boas?</figcaption>
+                        </figure>
+                    </li>
+                    <li>
+                        <figure>
+                            <img src="./midia/Simpsons.png">
+                            <figcaption>Acerte os personagens corretos dos Simpsons e prove seu amor!</figcaption>
+                        </figure>
+                    </li>
+                </ul>
+            </div>
+        </main>
+        <main class="tela-2">
+            <header><span>BuzzQuizz</span></header>
+            TELA 2
+        </main>
+        <main class="tela-3">
+            <header><span>BuzzQuizz</span></header>
+            TELA 3
+        </main>
+
+        <div class="botao b1" onclick="trocarTela(this)">1</div>
+        <div class="botao b2" onclick="trocarTela(this)">2</div>
+        <div class="botao b3" onclick="trocarTela(this)">3</div>
+
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
         <script src="script.js"></script>

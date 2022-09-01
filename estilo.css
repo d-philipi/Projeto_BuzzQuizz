@@ -214,8 +214,8 @@ header span{
 
 .tela-2 .pergunta{
     width: 759px;
-    height: 650px;
     padding-top: 28px;
+    padding-bottom: 15px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
     margin-top: 42px;
     background-color: white;

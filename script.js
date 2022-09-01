@@ -2,9 +2,8 @@
 
 let meusQuizzes = [];
 let quizzesGerais = [];
-let quizzSelecionado = {};
+let quizzSelecionado;
 let index;
-
 const url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/'
 
 function trocarTela(botaolecionado){
@@ -25,7 +24,6 @@ function trocarTela(botaolecionado){
     if(botaolecionado === b2){
         telaselecionada.classList.remove('selecionada');
         tela2.classList.add('selecionada');
-        getQuizz();
     }
     if(botaolecionado === b3){
         telaselecionada.classList.remove('selecionada');
@@ -54,7 +52,7 @@ function carregarQuizzes(resposta){
 		quizzesGerais.push(novoQuizz);
 
 		const item = `
-		<li onclick = "selecionarQuizz(this)">
+		<li onclick = "getQuizz(this)">
 			<q class = "inativo">${resposta.data[i].id}</q>
             <figure>
                 <img src="${resposta.data[i].image}">
@@ -91,14 +89,19 @@ function selecionarQuizz(quizz){
 }
 /*FUNÇÕES E VARIÁVEIS RELACIONADOS A TELA 2*/
 
-function getQuizz(){
+function getQuizz(quizz){
 
-    const promessa = axios.get(url + '2')
+    const id = Number(quizz.querySelector('q').innerHTML);
+    const promessa = axios.get(url + id)
     promessa.then(renderQuizz)
 
 }
 
 function renderQuizz(response){
+
+    const b2 = document.querySelector('.b2');
+
+    trocarTela(b2)
     const banner = document.querySelector('.banner')
 
     banner.style.backgroundImage= `linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url(${response.data.image})`
@@ -109,9 +112,6 @@ function renderQuizz(response){
 
     let i = 0
     response.data.questions.forEach(pergunta => {
-
-        console.log(i)
-
         perguntas.innerHTML += 
         `<div class=pergunta>
             <div class=titulo style="background-color:${pergunta.color}">
@@ -122,12 +122,10 @@ function renderQuizz(response){
         </div>`
 
         const respostas = document.querySelector(`.tela-2 .respostas-${i}`)
-
-        console.log(pergunta)
         
         pergunta.answers.forEach(resposta => {
             respostas.innerHTML +=
-            `<div class="resposta">
+            `<div class="resposta" onclick="selecionaResposta(this, )">
                 <img src="${resposta.image}">
                 <h4>${resposta.text}</h4>
             </div>`
@@ -135,6 +133,9 @@ function renderQuizz(response){
 
         i++
     });
+}
+
+function selecionaResposta(){
 }
 
 /*FUNÇÕES E VARIÁVEIS RELACIONADOS A TELA 3*/

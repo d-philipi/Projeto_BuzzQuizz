@@ -1,5 +1,10 @@
 /*FUNÇÕES E VARIÁVEIS GLOBAIS*/
 
+let meusQuizzes = [];
+let quizzesGerais = [];
+let quizzSelecionado = {};
+let index;
+
 const url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/'
 
 function trocarTela(botaolecionado){
@@ -29,6 +34,61 @@ function trocarTela(botaolecionado){
 }
 
 /*FUNÇÕES E VARIÁVEIS RELACIONADOS A TELA 1*/
+function requisicaoQuizzes(){
+	const promessa = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+	promessa.then(carregarQuizzes);
+	promessa.catch(erroCarregarQuizzes);
+}
+
+requisicaoQuizzes();
+
+function carregarQuizzes(resposta){
+
+	const listaQuizzes = document.querySelector('ul');
+	let novoQuizz = {};
+
+	for(let i = 0; i < 6; i++){
+
+		novoQuizz = resposta.data[i]
+
+		quizzesGerais.push(novoQuizz);
+
+		const item = `
+		<li onclick = "selecionarQuizz(this)">
+			<q class = "inativo">${resposta.data[i].id}</q>
+            <figure>
+                <img src="${resposta.data[i].image}">
+                <figcaption>${resposta.data[i].title}</figcaption>
+            </figure>
+        </li>`
+
+		listaQuizzes.innerHTML = listaQuizzes.innerHTML + item;
+	};
+}
+
+function erroCarregarQuizzes(erro){
+	console.log(erro.response);
+}
+
+function selecionarQuizz(quizz){
+	const ident = Number(quizz.querySelector('q').innerHTML);
+
+	for(let i = 0; i < quizzesGerais.length; i++){
+		index = quizzesGerais[i].id;
+
+		if(ident === index){
+			console.log('Passou aqui');
+			quizzSelecionado = quizzesGerais[i];
+		}
+	}
+
+	console.log(ident);
+	console.log(index);
+	console.log(quizzSelecionado);
+	console.log(quizzesGerais);
+
+	//Agora só mandar o "quizzSelecionado" para a função que vai exibir ele na tela 2
+}
 /*FUNÇÕES E VARIÁVEIS RELACIONADOS A TELA 2*/
 
 function getQuizz(){

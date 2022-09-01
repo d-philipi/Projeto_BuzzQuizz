@@ -71,6 +71,10 @@ header span{
     display: initial;
 }
 
+.inativo{
+    display: none;
+}
+
 /*CLASSES RELACIONADAS A TELA 1*/
 
 .tela-1{

@@ -1,32 +1,11 @@
 /*FUNÇÕES E VARIÁVEIS GLOBAIS*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 let meusQuizzes = [];
 let quizzesGerais = [];
 let quizzSelecionado = {};
 let index;
 
-
-
-
+const url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/'
 
 function trocarTela(botaolecionado){
     const telaselecionada = document.querySelector('.selecionada');
@@ -108,7 +87,7 @@ function selecionarQuizz(quizz){
 	console.log(quizzSelecionado);
 	console.log(quizzesGerais);
 
-	//Agora só mandar o "quizzSelecionado" para a função que vai exibir ele
+	//Agora só mandar o "quizzSelecionado" para a função que vai exibir ele na tela 2
 }
 /*FUNÇÕES E VARIÁVEIS RELACIONADOS A TELA 2*/
 

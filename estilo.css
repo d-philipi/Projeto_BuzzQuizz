@@ -5,7 +5,8 @@
 
 /*CLASSES GLOBAIS*/
 body{
-    background-color: #FAFAFA;
+    background-color: #FAFAFA; 
+    font-family: 'Roboto', sans-serif;
 }
 
 *{
@@ -187,6 +188,65 @@ header span{
 .tela-2.selecionada{
     display: initial;
 }
+
+.banner{
+    height: 227px;
+    background-size: cover;
+    opacity: 0.85;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner h2{
+    
+    color: white;
+    font-size: 39px;
+    font-weight: 400;
+}
+
+.tela-2 .perguntas, .titulo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tela-2 .pergunta{
+    width: 759px;
+    height: 676px;
+    padding-top: 28px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 42px;
+}
+
+.tela-2 .titulo{
+    width: 688px;
+    height: 138px;
+    font-weight: 700;
+    font-size: 23px;
+    color: white;
+    background-color:purple;
+    margin: 0px 38px;
+}
+
+.tela-2 .pergunta:nth-child(2){
+    flex-wrap: wrap;
+}
+
+.tela-2 .pergunta:nth-child(2){
+    margin-right: 25px;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.tela-2 .pergunta:nth-child(2) img {
+    width: 330x;
+    height: 175px;
+}
+
+
+
 
 /*CLASSES RELACIONADAS A TELA 3*/
 

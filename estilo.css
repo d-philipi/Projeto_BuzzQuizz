@@ -1,3 +1,8 @@
+/*IMPORT DA FONTE ROBOTO*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+
 /*CLASSES GLOBAIS*/
 body{
     background-color: #FAFAFA;
@@ -182,10 +187,135 @@ header span{
 /*CLASSES RELACIONADAS A TELA 3*/
 
 .tela-3{
-    display: none;
+    display: none;     
 }
 .tela-3.selecionada{
     display: initial;
+}
+.comecoQuizzCreator, .perguntasQuizzCreator, .niveisQuizzCreator, .fimQuizzCreator{
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+.tituloPag {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 27px;
+    margin: 0 auto;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 27px;
+}
+.containerQuizzCreator, .containerQuizzCreatorPerguntas, .containerNiveisQuizzCreator{
+    background-color: #FFFFFF;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    width: 600px;
+    margin: 0 auto;
+    margin-bottom: 22px;    
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
+    border-radius: 5px;
+}
+.tituloQuizzCreator{
+    margin-top: 20px;
+}
+.tituloQuizzCreator, .urlQuizzCreator, .qtePerguntasQuizzCreator, .qteNiveisQuizzCreator, .perguntaQuizzCreator, 
+.corQuizzCreator, .resCorretaQuizzCreator, .urlImgQuizzCreator, .resInCorretaQuizzCreator, .urlImgQuizzCreator,
+.tituloNivelQuizzCreator, .qteAcertosQuizzCreator, .descricaoQuizzCreator, .urlNivelImgQuizzCreator {
+    background-color: #FFFFFF;
+    height: 46px;
+    width: 564px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 22px;
+    color: #bababa;
+    margin-bottom: 14px;
+    border-radius: 5px;
+    border: 1px solid #d1d1d1;
+    padding: 23.15px;
+}
+.urlImgQuizzCreator{
+    margin-bottom: 32px;
+}
+.quizzCreator1, .quizzCreator2, .quizzCreator3{
+    background-color: #EC362D;
+    font-family: 'Roboto', sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    height: 54px;
+    width: 368px;
+    border-radius: 15px;
+    color: #FFFFFF;
+    border: none;
+    margin-top: 75px;
+}
+.quizzCreator4 {
+    background-color: #EC362D;
+    font-family: 'Roboto', sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    height: 54px;
+    width: 220px;
+    border-radius: 15px;
+    color: #FFFFFF;
+    border: none;
+    margin-top: 45px;
+}
+.nomePart {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    margin-left: 20px;
+    align-self: flex-start ;
+    align-items: flex-start;
+    align-content: flex-start;
+    margin-top: 27px;
+    margin-bottom: 24px;
+}
+.perguntaCurto{
+    background-color: #FFFFFF;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;    
+    width: 600px;
+    margin: 0 auto;
+    margin-bottom: 22px;    
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
+    border-radius: 5px;
+}
+.iconeTask {
+    font-size: 26px;
+    margin-right: 25px;
+}
+.imgFim{
+    height: 266px;
+    width: 500px;
+    margin-bottom: 45px;
+    border-radius: 10px;
+}
+.voltarHome {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    color: #818181;
+    margin-top: 10px;
 }
 
 /*RESPONSIVIDADE DA TELA 1*/
@@ -225,5 +355,22 @@ header span{
 
 /*RESPONSIVIDADE DA TELA 3*/
 
-@media ( max-width: 1100px){}
+@media ( max-width: 1100px){
+    .containerQuizzCreator, .containerQuizzCreatorPerguntas, .containerNiveisQuizzCreator{
+        width: 100%;
+        overflow-x: hidden;
+    }
+    .perguntaCurto{
+        width: 100%;
+    }
+    
+    .tituloQuizzCreator, .urlQuizzCreator, .qtePerguntasQuizzCreator, .qteNiveisQuizzCreator, .perguntaQuizzCreator, 
+.corQuizzCreator, .resCorretaQuizzCreator, .urlImgQuizzCreator, .resInCorretaQuizzCreator, .urlImgQuizzCreator,
+.tituloNivelQuizzCreator, .qteAcertosQuizzCreator, .descricaoQuizzCreator, .urlNivelImgQuizzCreator {
+    width: 90%;
+}
+    .quizzCreator1, .quizzCreator2, .quizzCreator3, .quizzCreator4, .imgFim{
+        width: 90%;
+    }
+}
 

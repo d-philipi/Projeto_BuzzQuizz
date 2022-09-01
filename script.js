@@ -33,9 +33,8 @@ function trocarTela(botaolecionado){
 
 function getQuizz(){
 
-    const promessa = axios.get(url + '1')
+    const promessa = axios.get(url + '2')
     promessa.then(renderQuizz)
-    promessa.catch(printaErroQuizz)
 
 }
 
@@ -64,7 +63,7 @@ function renderQuizz(response){
 
         const respostas = document.querySelector(`.tela-2 .respostas-${i}`)
 
-        console.log(respostas)
+        console.log(pergunta)
         
         pergunta.answers.forEach(resposta => {
             respostas.innerHTML +=
@@ -73,7 +72,8 @@ function renderQuizz(response){
                 <h4>${resposta.text}</h4>
             </div>`
         })
-        return
+
+        i++
     });
 }
 

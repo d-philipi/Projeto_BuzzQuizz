@@ -182,11 +182,52 @@ header span{
 
 /*CLASSES RELACIONADAS A TELA 2*/
 
-.tela-2{
+.tela-2, .tela-2 .hide{
     display: none;
 }
+
 .tela-2.selecionada{
     display: initial;
+}
+
+.resultado{
+    width: 759px;
+    height: 430px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    padding: 18px;
+    margin: 44px 0px 57px 0px;
+}
+
+.resultado img{
+    width: 364px;
+    height: 273px;
+    margin-right: 21px;
+}
+
+.descricao{
+    
+    width: 727px;
+    font-weight: 700;
+    font-size: 19px;
+    color: #484848;
+    display: flex;
+    align-items: flex-start;
+    word-wrap: break-word;
+    text-align: justify;
+}
+
+.pontuacao{
+    width: 727px;
+    height: 100px;
+    background-color: #EC362D;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 23px;
+    font-weight: 700;
+    margin-bottom: 18px;
 }
 
 .banner{
@@ -205,11 +246,15 @@ header span{
     font-weight: 400;
 }
 
-.tela-2 .perguntas, .titulo, .pergunta > div:nth-child(2) {
+.final, .tela-2 .perguntas, .titulo, .pergunta > div:nth-child(2), .final > div:nth-child(2){
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+}
+
+.final > div:nth-child(2){
+    flex-direction: column;
 }
 
 .tela-2 .pergunta{
@@ -249,7 +294,31 @@ header span{
 
 }
 
+.resposta-nao-selecionada{
+    opacity: 0.3;
+}
 
+.tela-2 button{
+    background-color: #EC362D;
+    color: white;
+    width: 260px;
+    height: 52px;
+    border-radius: 15px;
+    border: 0px;
+    font-size: 21px;
+    font-weight: 400;
+    margin-bottom: 20px;
+}
+
+.final h4{
+    color: #818181;
+    font-size: 21px;
+    font-weight: 400;
+}
+
+.final{
+    margin-bottom: 90px;
+}
 
 
 /*CLASSES RELACIONADAS A TELA 3*/

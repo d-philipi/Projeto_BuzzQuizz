@@ -6,6 +6,9 @@ let quizzSelecionado;
 let index;
 const url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/'
 
+let acertos = 0;
+let niveis;
+
 function trocarTela(botaolecionado){
     const telaselecionada = document.querySelector('.selecionada');
 
@@ -33,7 +36,7 @@ function trocarTela(botaolecionado){
 
 /*FUNÇÕES E VARIÁVEIS RELACIONADOS A TELA 1*/
 function requisicaoQuizzes(){
-	const promessa = axios.get('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes');
+	const promessa = axios.get(url);
 	promessa.then(carregarQuizzes);
 	promessa.catch(erroCarregarQuizzes);
 }
@@ -68,45 +71,34 @@ function erroCarregarQuizzes(erro){
 	console.log(erro.response);
 }
 
-function selecionarQuizz(quizz){
-	const ident = Number(quizz.querySelector('q').innerHTML);
-
-	for(let i = 0; i < quizzesGerais.length; i++){
-		index = quizzesGerais[i].id;
-
-		if(ident === index){
-			console.log('Passou aqui');
-			quizzSelecionado = quizzesGerais[i];
-		}
-	}
-
-	console.log(ident);
-	console.log(index);
-	console.log(quizzSelecionado);
-	console.log(quizzesGerais);
-
-	//Agora só mandar o "quizzSelecionado" para a função que vai exibir ele na tela 2
-}
 /*FUNÇÕES E VARIÁVEIS RELACIONADOS A TELA 2*/
 
 function getQuizz(quizz){
 
     const id = Number(quizz.querySelector('q').innerHTML);
     const promessa = axios.get(url + id)
-    promessa.then(renderQuizz)
+    promessa.then(verQuizz)
 
+}
+
+function verQuizz(response){
+    const b2 = document.querySelector('.b2')
+    trocarTela(b2)
+
+    renderQuizz(response)
 }
 
 function renderQuizz(response){
 
-    const b2 = document.querySelector('.b2');
+    quizzSelecionado = response;
 
-    trocarTela(b2)
+    acertos = 0
+    
     const banner = document.querySelector('.banner')
 
     banner.style.backgroundImage= `linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url(${response.data.image})`
 
-    banner.innerHTML = `<h2>${response.data.title}</h2>`
+    banner.innerHTML = `<h2>${response.data.title}</h2><q class="inativo">${response.data.id}</q>`
 
     const perguntas = document.querySelector('.tela-2 .perguntas')
 
@@ -122,21 +114,123 @@ function renderQuizz(response){
         </div>`
 
         const respostas = document.querySelector(`.tela-2 .respostas-${i}`)
+
+        let respostas_servidor = pergunta.answers.slice()
+
+        respostas_servidor.sort(comparador)
         
-        pergunta.answers.forEach(resposta => {
+        respostas_servidor.forEach(resposta => {
             respostas.innerHTML +=
-            `<div class="resposta" onclick="selecionaResposta(this, )">
+            `<div class="resposta enabled" onclick="selecionaResposta(this)">
                 <img src="${resposta.image}">
                 <h4>${resposta.text}</h4>
+                <q class="inativo">${resposta.isCorrectAnswer}</q>
             </div>`
         })
 
         i++
     });
+
+    niveis = response.data.levels
 }
 
-function selecionaResposta(){
+function comparador() { 
+	return Math.random() - 0.5; 
 }
+
+function selecionaResposta(respostaSelecionada){
+
+    if(!respostaSelecionada.classList.contains('enabled')) return 
+
+    const respostasDaQuestao = respostaSelecionada.parentNode;
+    const opcoes = respostasDaQuestao.children
+
+    for(let i = 0; i < opcoes.length; i++){
+        let isCorrectAnswer = opcoes[i].querySelector('q').innerHTML;
+        let texto = opcoes[i].querySelector(':nth-child(2)')
+
+        if(isCorrectAnswer === 'true'){
+            texto.style.color = '#009C22'
+            if(respostaSelecionada === opcoes[i]) acertos++;
+        }else{
+            texto.style.color = '#FF4B4B'
+        }
+
+        if(respostaSelecionada !== opcoes[i]){
+            opcoes[i].classList.add('resposta-nao-selecionada')
+        }
+        opcoes[i].classList.remove('enabled')
+    }
+
+    const proximaPergunta = respostasDaQuestao.parentNode.nextSibling
+
+    if(proximaPergunta) setTimeout(scrollProximaPergunta, 2000, proximaPergunta)
+    else setTimeout(mostraResultado, 2000)
+
+}
+
+function scrollProximaPergunta(proximaPergunta){
+    proximaPergunta.scrollIntoView()
+}
+
+function mostraResultado(){
+
+    const resultado = document.querySelector('.resultado')
+
+    const quantidadeDePerguntas = document.querySelectorAll('.pergunta').length
+
+    let pontuacao = parseInt((acertos/quantidadeDePerguntas)*100)
+    let nivelDaPontuacao = 0
+
+    niveis.forEach(nivel => {
+        if((nivel.minValue <= pontuacao) && (nivel.minValue >= nivelDaPontuacao)) nivelDaPontuacao = nivel
+    });
+
+    resultado.innerHTML = `
+    <div class="pontuacao">
+        <h3>${pontuacao}% de acerto: ${nivelDaPontuacao.title}</h3>
+    </div>
+    <div class="descricao">
+        <img src="${nivelDaPontuacao.image}">
+       ${nivelDaPontuacao.text}
+    </div>`
+
+    resultado.parentNode.classList.remove('hide')
+    resultado.scrollIntoView()
+}
+
+function reiniciarQuizz(){
+/*     const respostas = document.querySelectorAll('.resposta')
+
+    let i = 0
+    respostas.forEach( resposta => {
+
+        if(resposta.classList.contains('resposta-nao-selecionada')) resposta.classList.remove('resposta-nao-selecionada')
+
+        resposta.classList.add('enabled')
+        let text = resposta.querySelector(':nth-child(2)')
+        text.style.color = '#000000'
+
+        const respostasDaQuestao = document.querySelectorAll(`.tela-2 .respostas-${i} .resposta`)
+
+        if(respostasDaQuestao){
+            const embaralhaRespostas = Array.from(respostasDaQuestao)
+            embaralhaRespostas.sort(comparador)
+        }
+        
+    }) */
+
+    const header = document.querySelector('.tela-2 header')
+    header.scrollIntoView()
+
+    const final = document.querySelector('.final')
+    final.classList.add('hide')
+
+    renderQuizz(quizzSelecionado) 
+    
+}
+
+
 
 /*FUNÇÕES E VARIÁVEIS RELACIONADOS A TELA 3*/
 /* 

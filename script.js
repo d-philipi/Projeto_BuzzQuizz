@@ -1,9 +1,11 @@
 /*FUNÇÕES E VARIÁVEIS GLOBAIS*/
 
 let meusQuizzes = [];
+let meuNovoQuizz = {};
 let quizzesGerais = [];
 let quizzSelecionado;
 let index;
+
 const url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/'
 
 function trocarTela(botaolecionado){
@@ -42,50 +44,108 @@ requisicaoQuizzes();
 
 function carregarQuizzes(resposta){
 
-	const listaQuizzes = document.querySelector('ul');
+	const listaGeral = document.querySelector('.container');
 	let novoQuizz = {};
 
-	for(let i = 0; i < 6; i++){
-
-		novoQuizz = resposta.data[i]
-
-		quizzesGerais.push(novoQuizz);
-
+	if(meusQuizzes.length !== 0){
 		const item = `
-		<li onclick = "getQuizz(this)">
-			<q class = "inativo">${resposta.data[i].id}</q>
-            <figure>
-                <img src="${resposta.data[i].image}">
-                <figcaption>${resposta.data[i].title}</figcaption>
-            </figure>
-        </li>`
+		<span>Seus Quizzes</span>
+        <ion-icon name="add-circle" onclick = "criarQuizz()"></ion-icon>
+        <ul class="meusQuizzes"></ul>
+        <span>Todos os Quizzes</span>
+        <ul class="quizzesGerais"></ul>`;
 
-		listaQuizzes.innerHTML = listaQuizzes.innerHTML + item;
-	};
+		listaGeral.innerHTML = listaGeral.innerHTML + item;
+
+		const listaMeusQuizzes = document.querySelector('.meusQuizzes');
+
+		for(let i = 0; i < meusQuizzes.length; i++){
+			const item = `
+			<li onclick = "getQuizz(this)">
+				<q class = "inativo">${meusQuizzes[i].id}</q>
+				<figure>
+					<img src="${meusQuizzes[i].image}">
+					<figcaption>${meusQuizzes[i].title}</figcaption>
+				</figure>
+			</li>`;
+
+			listaMeusQuizzes.innerHTML = listaMeusQuizzes.innerHTML + item;
+		}
+
+		const listaQuizzesGerais = document.querySelector('.quizzesGerais');
+
+		for(let i = 0; i < 6; i++){
+
+			novoQuizz = resposta.data[i]
+
+			quizzesGerais.push(novoQuizz);
+
+			const item = `
+			<li onclick = "getQuizz(this)">
+				<q class = "inativo">${resposta.data[i].id}</q>
+				<figure>
+					<img src="${resposta.data[i].image}">
+					<figcaption>${resposta.data[i].title}</figcaption>
+				</figure>
+			</li>`
+
+			listaQuizzesGerais.innerHTML = listaQuizzesGerais.innerHTML + item;
+		};
+
+	}else{
+		const item = `
+		<section>
+            <span>Você não criou nenhum <br> quizz ainda :(</span>
+            <button onclick = "criarQuizz()">Criar Quizz</button>
+        </section>
+        <span>Todos os Quizzes</span>
+        <ul class="quizzesGerais"> 
+        </ul>`;
+
+		listaGeral.innerHTML = listaGeral.innerHTML + item;
+		
+		const listaQuizzesGerais = document.querySelector('.quizzesGerais');
+
+		for(let i = 0; i < 6; i++){
+
+			novoQuizz = resposta.data[i]
+
+			quizzesGerais.push(novoQuizz);
+
+			const item = `
+			<li onclick = "getQuizz(this)">
+				<q class = "inativo">${resposta.data[i].id}</q>
+				<figure>
+					<img src="${resposta.data[i].image}">
+					<figcaption>${resposta.data[i].title}</figcaption>
+				</figure>
+			</li>`
+
+			listaQuizzesGerais.innerHTML = listaQuizzesGerais.innerHTML + item;
+		};
+
+	}
+
 }
 
 function erroCarregarQuizzes(erro){
 	console.log(erro.response);
 }
 
-function selecionarQuizz(quizz){
-	const ident = Number(quizz.querySelector('q').innerHTML);
+function criarQuizz(){
+	meuNovoQuizz = {};
 
-	for(let i = 0; i < quizzesGerais.length; i++){
-		index = quizzesGerais[i].id;
+	const b3 = document.querySelector('.b3');
 
-		if(ident === index){
-			console.log('Passou aqui');
-			quizzSelecionado = quizzesGerais[i];
-		}
-	}
+    trocarTela(b3)
+}
 
-	console.log(ident);
-	console.log(index);
-	console.log(quizzSelecionado);
-	console.log(quizzesGerais);
+function voltarHome(){
+	requisicaoQuizzes();
 
-	//Agora só mandar o "quizzSelecionado" para a função que vai exibir ele na tela 2
+	const b1 = document.querySelector('.b1');
+
+    trocarTela(b1)
 }
 /*FUNÇÕES E VARIÁVEIS RELACIONADOS A TELA 2*/
 

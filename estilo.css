@@ -74,6 +74,9 @@ header span{
 .inativo{
     display: none;
 }
+.comecoQuizzCreator .inativo{
+    display: none;
+}
 
 /*CLASSES RELACIONADAS A TELA 1*/
 

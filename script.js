@@ -170,6 +170,16 @@ function getQuizz(quizz){
 }
 
 function verQuizz(response){
+
+    const perguntas = document.querySelector('.perguntas')
+    perguntas.innerHTML = ""
+
+    const banner = document.querySelector('.banner')
+    banner.innerHTML = ""
+
+    const resultado = document.querySelector('.resultado')
+    resultado.innerHTML = ""
+ 
     const b2 = document.querySelector('.b2')
     trocarTela(b2)
 

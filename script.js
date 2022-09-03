@@ -1,9 +1,15 @@
 /*FUNÇÕES E VARIÁVEIS GLOBAIS*/
 
 let meusQuizzes = [];
+let meuNovoQuizz = {};
 let quizzesGerais = [];
 let quizzSelecionado;
 let index;
+let tituloQuizz;
+let urlQuizz;
+let nPerguntas;
+let nNiveis;
+
 const url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/'
 
 let acertos = 0;
@@ -45,30 +51,112 @@ requisicaoQuizzes();
 
 function carregarQuizzes(resposta){
 
-	const listaQuizzes = document.querySelector('ul');
+	const listaGeral = document.querySelector('.container');
 	let novoQuizz = {};
 
-	for(let i = 0; i < 6; i++){
-
-		novoQuizz = resposta.data[i]
-
-		quizzesGerais.push(novoQuizz);
-
+	if(meusQuizzes.length !== 0){
 		const item = `
-		<li onclick = "getQuizz(this)">
-			<q class = "inativo">${resposta.data[i].id}</q>
-            <figure>
-                <img src="${resposta.data[i].image}">
-                <figcaption>${resposta.data[i].title}</figcaption>
-            </figure>
-        </li>`
+		<span>Seus Quizzes</span>
+        <ion-icon name="add-circle" onclick = "criarQuizz()"></ion-icon>
+        <ul class="meusQuizzes"></ul>
+        <span>Todos os Quizzes</span>
+        <ul class="quizzesGerais"></ul>`;
 
-		listaQuizzes.innerHTML = listaQuizzes.innerHTML + item;
-	};
+		listaGeral.innerHTML = listaGeral.innerHTML + item;
+
+		const listaMeusQuizzes = document.querySelector('.meusQuizzes');
+
+		for(let i = 0; i < meusQuizzes.length; i++){
+			const item = `
+			<li onclick = "getQuizz(this)">
+				<q class = "inativo">${meusQuizzes[i].id}</q>
+				<figure>
+					<img src="${meusQuizzes[i].image}">
+					<figcaption>${meusQuizzes[i].title}</figcaption>
+				</figure>
+			</li>`;
+
+			listaMeusQuizzes.innerHTML = listaMeusQuizzes.innerHTML + item;
+		}
+
+		const listaQuizzesGerais = document.querySelector('.quizzesGerais');
+
+		for(let i = 0; i < 6; i++){
+
+			novoQuizz = resposta.data[i]
+
+			quizzesGerais.push(novoQuizz);
+
+			const item = `
+			<li onclick = "getQuizz(this)">
+				<q class = "inativo">${resposta.data[i].id}</q>
+				<figure>
+					<img src="${resposta.data[i].image}">
+					<figcaption>${resposta.data[i].title}</figcaption>
+				</figure>
+			</li>`
+
+			listaQuizzesGerais.innerHTML = listaQuizzesGerais.innerHTML + item;
+		};
+
+	}else{
+		const item = `
+		<section>
+            <span>Você não criou nenhum <br> quizz ainda :(</span>
+            <button onclick = "criarQuizz()">Criar Quizz</button>
+        </section>
+        <span>Todos os Quizzes</span>
+        <ul class="quizzesGerais"> 
+        </ul>`;
+
+		listaGeral.innerHTML = listaGeral.innerHTML + item;
+		
+		const listaQuizzesGerais = document.querySelector('.quizzesGerais');
+
+		for(let i = 0; i < 6; i++){
+
+			novoQuizz = resposta.data[i]
+
+			quizzesGerais.push(novoQuizz);
+
+			const item = `
+			<li onclick = "getQuizz(this)">
+				<q class = "inativo">${resposta.data[i].id}</q>
+				<figure>
+					<img src="${resposta.data[i].image}">
+					<figcaption>${resposta.data[i].title}</figcaption>
+				</figure>
+			</li>`
+
+			listaQuizzesGerais.innerHTML = listaQuizzesGerais.innerHTML + item;
+		};
+
+	}
+
 }
 
 function erroCarregarQuizzes(erro){
 	console.log(erro.response);
+}
+
+function criarQuizz(){
+	meuNovoQuizz = {};
+
+	const b3 = document.querySelector('.b3');
+
+    trocarTela(b3)
+}
+
+function voltarHome(){
+
+    const listaGeral = document.querySelector('.tela-1 .container')
+    listaGeral.innerHTML = ""
+
+	requisicaoQuizzes();
+
+	const b1 = document.querySelector('.b1');
+
+    trocarTela(b1)
 }
 
 /*FUNÇÕES E VARIÁVEIS RELACIONADOS A TELA 2*/
@@ -90,7 +178,7 @@ function verQuizz(response){
 
 function renderQuizz(response){
 
-    quizzSelecionado = response;
+    quizzSelecionado = response
 
     acertos = 0
     
@@ -132,6 +220,10 @@ function renderQuizz(response){
     });
 
     niveis = response.data.levels
+
+    const header = document.querySelector('.tela-2 header')
+    header.scrollIntoView()
+
 }
 
 function comparador() { 
@@ -200,39 +292,65 @@ function mostraResultado(){
 }
 
 function reiniciarQuizz(){
-/*     const respostas = document.querySelectorAll('.resposta')
 
-    let i = 0
-    respostas.forEach( resposta => {
+    const perguntas = document.querySelector('.perguntas')
+    perguntas.innerHTML = ""
 
-        if(resposta.classList.contains('resposta-nao-selecionada')) resposta.classList.remove('resposta-nao-selecionada')
+    const banner = document.querySelector('.banner')
+    banner.innerHTML = ""
 
-        resposta.classList.add('enabled')
-        let text = resposta.querySelector(':nth-child(2)')
-        text.style.color = '#000000'
+    const resultado = document.querySelector('.resultado')
+    resultado.innerHTML = ""
 
-        const respostasDaQuestao = document.querySelectorAll(`.tela-2 .respostas-${i} .resposta`)
-
-        if(respostasDaQuestao){
-            const embaralhaRespostas = Array.from(respostasDaQuestao)
-            embaralhaRespostas.sort(comparador)
-        }
-        
-    }) */
-
-    const header = document.querySelector('.tela-2 header')
-    header.scrollIntoView()
+    renderQuizz(quizzSelecionado)
 
     const final = document.querySelector('.final')
-    final.classList.add('hide')
-
-    renderQuizz(quizzSelecionado) 
+    final.classList.add('hide') 
     
+    const header = document.querySelector('.tela-2 header')
+    header.scrollIntoView()
 }
 
-
-
 /*FUNÇÕES E VARIÁVEIS RELACIONADOS A TELA 3*/
+
+function confereDados(){
+	tituloQuizz = document.querySelector(".tituloQuizzCreator").value;
+	urlQuizz = document.querySelector(".urlQuizzCreator").value;
+	nPerguntas = document.querySelector(".qtePerguntasQuizzCreator").value;
+	nNiveis = document.querySelector(".qteNiveisQuizzCreator").value;
+	if((tituloQuizz !== null) && (urlQuizz !== null) && (nPerguntas !== null) && (nNiveis !== null)){
+		console.log("Tudo Preenchido")
+		proxPagQuizz();
+		//colocar a função de ir para a próxima pagina
+	} else{erroPreenchimento()}
+}
+function erroPreenchimento() {
+	alert("Preencha todos os campos de forma correta")
+	//verificar se preciso dar reload na pagina
+}
+function proxPagQuizz(){
+    const pagSelecionada = document.querySelector(".selecionada");
+	console.log(pagSelecionada)
+    const p1 = document.querySelector('.comecoQuizzCreator');
+	console.log(p1);
+    const p2 = document.querySelector('.perguntasQuizzCreator');
+	console.log(p2);
+   /* const p3 = document.querySelector('.niveisQuizzCreator');
+	const p4 = document.querySelector('.fimQuizzCreator');*/
+   // p1.classList.remove("selecionada");
+	p1.classList.add("inativo");
+	p2.classList.remove("inativo");
+    //p2.classList.add("selecionada");
+    /*}
+    if(botaolecionado === b2){
+        telaselecionada.classList.remove('selecionada');
+        tela2.classList.add('selecionada');
+    }
+    if(botaolecionado === b3){
+        telaselecionada.classList.remove('selecionada');
+        tela3.classList.add('selecionada');
+    }*/
+}
 /* 
 Criar função para repetir os campos de inputs conforme a quantidade de perguntas inseridas, e a quantidade de niveis também
 function verificacaoInput {
@@ -246,8 +364,8 @@ função que confere se o quizz foi preenchido, se for preenchido -> armarzenar 
 function adicionarDados(){
     const dados = document.querySelector(...)
     const quizzCriado = {
-	title: "Título do quizz",
-	image: "https://http.cat/411.jpg",
+	title: tituloQuizz,
+	image: urlQuizz,
 	questions: [
 		{
 			title: "Título da pergunta 1",

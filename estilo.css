@@ -74,6 +74,9 @@ header span{
 .inativo{
     display: none;
 }
+.comecoQuizzCreator .inativo{
+    display: none;
+}
 
 /*CLASSES RELACIONADAS A TELA 1*/
 
@@ -87,7 +90,9 @@ header span{
 .container{
     width: 100%;
     height: 100%;
-    padding: 77px 120px;
+    padding: 0 120px 77px 120px;
+
+    position: relative;
 }
 
 .container section{
@@ -100,6 +105,7 @@ header span{
     background: #FAFAFA;
     border: 1px dashed #D5D5D5;
     border-radius: 5px;
+    margin: 77px 0 0 0;
 }
 
 .container section span{
@@ -139,6 +145,17 @@ header span{
     color: #000000;
     display: inline-block;
     margin: 77px 0 0 0;
+}
+
+.container ion-icon{
+    width: 30px;
+    height: 30px;
+    color: red;
+    cursor: pointer;
+
+    position: absolute;
+    top: 72px;
+    left: 250px;
 }
 
 .container ul{
@@ -323,7 +340,7 @@ header span{
 
 /*CLASSES RELACIONADAS A TELA 3*/
 
-.tela-3{
+.tela-3, .tela-3 .inativo{
     display: none;     
 }
 .tela-3.selecionada{
@@ -453,6 +470,10 @@ header span{
     line-height: 25px;
     color: #818181;
     margin-top: 10px;
+}
+
+.perguntasQuizzCreator .inativo{
+    display: none;
 }
 
 /*RESPONSIVIDADE DA TELA 1*/

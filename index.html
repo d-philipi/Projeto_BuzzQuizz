@@ -18,14 +18,6 @@
         <main class="tela-1 selecionada">
             <header><span>BuzzQuizz</span></header>
             <div class="container">
-                <section>
-                    <span>Você não criou nenhum <br> quizz ainda :(</span>
-                    <button>Criar Quizz</button>
-                </section>
-                <span>Todos os Quizzes</span>
-                <ul>
-                    
-                </ul>
             </div>
         </main>
         <main class="tela-2">
@@ -36,7 +28,7 @@
                 <div class="resultado"></div>
                <div>
                 <button onclick="reiniciarQuizz()">Reiniciar Quizz</button>
-                <h4>Voltar para home</h4>
+                <h4 onclick="voltarHome()">Voltar para home</h4>
                </div> 
             </div>
         </main>
@@ -50,9 +42,9 @@
                             <input class="qtePerguntasQuizzCreator"  required  type="number" min="3" placeholder="Quantidade de perguntas do quizz"> 
                             <input class="qteNiveisQuizzCreator"  required  type="number" min="2" placeholder="Quantidade de níveis do quizz"> 
                         </div>
-                        <button class="quizzCreator1" onclick="confereTodosDados()">Prosseguir para criar perguntas</button>
+                        <button class="quizzCreator1" onclick="confereDados()">Prosseguir para criar perguntas</button>
                 </div>
-                <div class="perguntasQuizzCreator">
+                <div class="perguntasQuizzCreator inativo">
                     <div class="tituloPag">Crie suas perguntas</div>
                         <div class="containerQuizzCreatorPerguntas">
                             <div class="nomePart">Pergunta 1</div>
@@ -71,9 +63,9 @@
                         </div>
                         <div class="perguntaCurto"><div class="nomePart">Pergunta 2</div> <ion-icon class="iconeTask" name="create-outline"></ion-icon></div>
                         <div class="perguntaCurto"><div class="nomePart">Pergunta 3</div> <ion-icon class="iconeTask" name="create-outline"></ion-icon></div>
-                        <button class="quizzCreator2" onclick="confereTodosDados()">Prosseguir para criar níveis</button>
+                        <div class="quizzCreator2">Prosseguir para criar níveis</div>
                 </div>
-                <div class="niveisQuizzCreator">
+                <div class="niveisQuizzCreator inativo">
                     <div class="tituloPag">Agora, decida os niveis</div>
                         <div class="containerNiveisQuizzCreator">
                             <div class="nomePart">Nível 1</div>
@@ -84,9 +76,9 @@
                         </div>
                         <div class="perguntaCurto"><div class="nomePart">Nível 2</div> <ion-icon class="iconeTask" name="create-outline"></ion-icon></div>
                         <div class="perguntaCurto"><div class="nomePart">Nível 3</div> <ion-icon class="iconeTask" name="create-outline"></ion-icon></div>
-                        <button class="quizzCreator3" onclick="confereTodosDados()">Finalizar quizz</button>
+                        <div class="quizzCreator3" >Finalizar quizz</div>
                 </div>
-                <div class="fimQuizzCreator">
+                <div class="fimQuizzCreator inativo">
                     <div class="tituloPag">Seu quizz está pronto!</div>
                     <div class="imgFim"><img class="imgFim" src="midia/Simpsons.png" />Verificar como inserir o link dentro do titulo do quizz em cima da imagem(Já vimos no começo do curso se não me engano)</div>
                     <button class="quizzCreator4">Acessar quizz</button>

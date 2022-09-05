@@ -9,6 +9,7 @@ let tituloQuizz;
 let urlQuizz;
 let nPerguntas;
 let nNiveis;
+let tentativas = 0;
 
 const url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/'
 
@@ -191,12 +192,13 @@ function renderQuizz(response){
     quizzSelecionado = response
 
     acertos = 0
+    tentativas = 0
     
     const banner = document.querySelector('.banner')
 
     banner.style.backgroundImage= `linear-gradient(0deg, rgba(0, 0, 0, 0.57), rgba(0, 0, 0, 0.57)), url(${response.data.image})`
 
-    banner.innerHTML = `<h2>${response.data.title}</h2><q class="inativo">${response.data.id}</q>`
+    banner.innerHTML = `<div><h2>${response.data.title}</h2></div><q class="inativo">${response.data.id}</q>`
 
     const perguntas = document.querySelector('.tela-2 .perguntas')
 
@@ -264,10 +266,14 @@ function selecionaResposta(respostaSelecionada){
         opcoes[i].classList.remove('enabled')
     }
 
-    const proximaPergunta = respostasDaQuestao.parentNode.nextSibling
+    tentativas++
 
-    if(proximaPergunta) setTimeout(scrollProximaPergunta, 2000, proximaPergunta)
-    else setTimeout(mostraResultado, 2000)
+    const proximaPergunta = respostasDaQuestao.parentNode.nextSibling
+    const quantidadeDePerguntas = document.querySelectorAll('.pergunta').length
+
+    if(tentativas == quantidadeDePerguntas) setTimeout(mostraResultado, 2000) 
+    else if(proximaPergunta) setTimeout(scrollProximaPergunta, 2000, proximaPergunta)
+    
 
 }
 
@@ -294,7 +300,7 @@ function mostraResultado(){
     </div>
     <div class="descricao">
         <img src="${nivelDaPontuacao.image}">
-       ${nivelDaPontuacao.text}
+       <h3>${nivelDaPontuacao.text}</h3>
     </div>`
 
     resultado.parentNode.classList.remove('hide')

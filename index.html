@@ -36,63 +36,92 @@
             <header><span>BuzzQuizz</span></header>
                 <div class="comecoQuizzCreator">
                     <div class="tituloPag">Comece pelo começo</div>
+                    <form action="#" onsubmit="confereDados()">
                         <div class="containerQuizzCreator">
-                            <input class="tituloQuizzCreator" type="text"  required  minlength="20" maxlength="65" placeholder="Título do seu quizz">
-                            <input class="urlQuizzCreator" type="url"  required  placeholder="URL da imagem do seu quizz"> 
-                            <input class="qtePerguntasQuizzCreator"  required  type="number" min="3" placeholder="Quantidade de perguntas do quizz"> 
-                            <input class="qteNiveisQuizzCreator"  required  type="number" min="2" placeholder="Quantidade de níveis do quizz"> 
+                            <input id="tituloQuizzCreator" id="tituloQuizzCreator" required type="text"  minlength="20" maxlength="65" placeholder="Título do seu quizz" 
+                            oninvalid="alert('O título do quizz deve conter entre 20 e 65 caracteres')" >
+                            <input id="urlQuizzCreator" required  type="url" placeholder="URL da imagem do seu quizz"
+                            oninvalid="alert('Deve ser inserida uma URL com o formato https://www.seusite.com.br')"> 
+                            <input id="qtePerguntasQuizzCreator" required type="number" min="3" placeholder="Quantidade de perguntas do quizz"
+                            oninvalid="alert('O seu quizz deve ter no mínimo 3 perguntas')"> 
+                             <input id="qteNiveisQuizzCreator" required type="number" min="2" placeholder="Quantidade de níveis do quizz"
+                             oninvalid="alert('O seu quizz deve ter no mínimo 2 níveis')"> 
                         </div>
-                        <button class="quizzCreator1" onclick="confereDados()">Prosseguir para criar perguntas</button>
+                        
+                        <input class="textobotao quizzCreator1" type="submit" value="Prosseguir para criar perguntas"></input>
+                    </form>
                 </div>
                 <div class="perguntasQuizzCreator inativo">
                     <div class="tituloPag">Crie suas perguntas</div>
-                        <div class="containerQuizzCreatorPerguntas">
+                    <form action="#" onsubmit="conferePerguntas()">
+                    <div class="containerQuizzCreatorPerguntas">
                             <div class="nomePart">Pergunta 1</div>
-                            <input class="perguntaQuizzCreator" type="text"  required  required minlength="20" placeholder="Texto da pergunta">
-                            <input class="corQuizzCreator"  required  placeholder="Cor de fundo da pergunta" type="color" > 
+                            <input class="p1" id="perguntaQuizzCreatorp1" type="text"  required  required minlength="20" placeholder="Texto da pergunta">
+                            <input class="p1" id="corQuizzCreatorcolor1" required pattern="#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?"
+                            oninvalid="alert('O formato da cor inserida deve iniciar com #, os três primeiros valores devem variar entre as letra a-f e os números 0-9,os três últimos valores devem varias entre as letras a-f e os valores 0-9')" placeholder="Cor de fundo da pergunta" type="text" > 
                             <div class="nomePart">Resposta correta</div>
-                            <input class="resCorretaQuizzCreator" type="text"  required  minlength="1" placeholder="Resposta correta">
-                            <input class="urlImgQuizzCreator" type="url"  required  placeholder="URL da imagem"> 
+                            <input class="p1" id="resCorretaQuizzCreatorrespC1" required type="text" minlength="1" placeholder="Resposta correta">
+                            <input class="p1" id="urlImgQuizzCreatorrlRespC1" required type="url" placeholder="URL da imagem"> 
                             <div class="nomePart">Respostas incorretas</div>
-                            <input class="resInCorretaQuizzCreator" type="text"  required  minlength="1" placeholder="Resposta incorreta 1">
-                            <input class="urlImgQuizzCreator" type="url"  required  placeholder="URL da imagem 1">
-                            <input class="resInCorretaQuizzCreator" type="text"  required  minlength="1" placeholder="Resposta incorreta 2">
-                            <input class="urlImgQuizzCreator" type="url"  required  placeholder="URL da imagem 2">
-                            <input class="resInCorretaQuizzCreator" type="text"  required  minlength="1" placeholder="Resposta incorreta 3">
-                            <input class="urlImgQuizzCreator" type="url"  required  placeholder="URL da imagem 3">
-                        </div>
-                        <div class="perguntaCurto"><div class="nomePart">Pergunta 2</div> <ion-icon class="iconeTask" name="create-outline"></ion-icon></div>
-                        <div class="perguntaCurto"><div class="nomePart">Pergunta 3</div> <ion-icon class="iconeTask" name="create-outline"></ion-icon></div>
-                        <div class="quizzCreator2">Prosseguir para criar níveis</div>
+                            <input class="p1" id="resInCorretaQuizzCreatorrespE11" required type="text" minlength="1" placeholder="Resposta incorreta 1">
+                            <input class="p1" id="urlImgQuizzCreatorurlrespE11" required type="url" placeholder="URL da imagem 1">
+                            <input class="P1" id="resInCorretaQuizzCreatorrespE21" type="text" minlength="1" placeholder="Resposta incorreta 2">
+                            <input class="p1" id="urlrespE21" type="url" placeholder="URL da imagem 2">
+                            <input class="p1" id="respE31" type="text" minlength="1" placeholder="Resposta incorreta 3">
+                            <input class="p1" id="urlrespE31" type="url" placeholder="URL da imagem 3">
+                    </div>
+                    <ul class="perguntasNovas">
+                        <li class="perguntaCurto"><div class="titulocontainer"><p class="nomePart">Pergunta 2</p><ion-icon classe="iconeTask" onclick="mostrarCampos(this)" name="create-outline"></ion-icon></div>
+                            <div class="perguntas2 inativo"> 
+                            <input class="p2" type="text"  required  required minlength="20" placeholder="Texto da pergunta">
+                            <input class="p2" required pattern="#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?"
+                            oninvalid="alert('O formato da cor inserida deve iniciar com #, os três primeiros valores devem variar entre as letra a-f e os números 0-9,os três últimos valores devem varias entre as letras a-f e os valores 0-9')" placeholder="Cor de fundo da pergunta" type="text" > 
+                            <div class="nomePart">Resposta correta</div>
+                            <input class="p2" required type="text" minlength="1" placeholder="Resposta correta">
+                            <input class="p2" required type="url" placeholder="URL da imagem"> 
+                            <div class="nomePart">Respostas incorretas</div>
+                            <input class="p2" required type="text" minlength="1" placeholder="Resposta incorreta 1">
+                            <input class="p2" required type="url" placeholder="URL da imagem 1">
+                            <input class="p2" type="text" minlength="1" placeholder="Resposta incorreta 2">
+                            <input class="p2" type="url" placeholder="URL da imagem 2">
+                            <input class="p2" type="text" minlength="1" placeholder="Resposta incorreta 3">
+                            <input class="p2" type="url" placeholder="URL da imagem 3">
+                    </div> </li>
+                                      
+                    </ul>
+                    <input type="submit" class="quizzCreator2 textobotao" value="Prosseguir para criar níveis"></input>
+                    </form>
                 </div>
                 <div class="niveisQuizzCreator inativo">
                     <div class="tituloPag">Agora, decida os niveis</div>
+                    <form action="#" onsubmit="confereNiveis()">
                         <div class="containerNiveisQuizzCreator">
                             <div class="nomePart">Nível 1</div>
-                            <input class="tituloNivelQuizzCreator" type="text"  required  minlength="10" placeholder="Título do nível">
-                            <input class="qteAcertosQuizzCreator" type="text"  required  min="0" max="100" placeholder="% de acerto mínima"> 
-                            <input class="urlNivelImgQuizzCreator" type="url"  required  placeholder="URL da imagem">                             
-                            <input class="descricaoQuizzCreator" type="text"  required  minlength="30" placeholder="Descrição do nível">
+                            <input class="n1" required type="text"  minlength="10" placeholder="Título do nível">
+                            <input class="n1" required type="text" min="0" max="100" placeholder="% de acerto mínima"> 
+                            <input class="n1" irequired type="url" placeholder="URL da imagem">                             
+                            <input class="n1" required type="text" minlength="30" placeholder="Descrição do nível">
                         </div>
-                        <div class="perguntaCurto"><div class="nomePart">Nível 2</div> <ion-icon class="iconeTask" name="create-outline"></ion-icon></div>
-                        <div class="perguntaCurto"><div class="nomePart">Nível 3</div> <ion-icon class="iconeTask" name="create-outline"></ion-icon></div>
-                        <div class="quizzCreator3" >Finalizar quizz</div>
+                        <ul class="niveisNovos">
+                        </ul>
+                        <input type="submit" class="quizzCreator3 textobotao" value="Finalizar quizz"></input>
+                    </form>
                 </div>
                 <div class="fimQuizzCreator inativo">
                     <div class="tituloPag">Seu quizz está pronto!</div>
                     <div class="imgFim"><img class="imgFim" src="midia/Simpsons.png" />Verificar como inserir o link dentro do titulo do quizz em cima da imagem(Já vimos no começo do curso se não me engano)</div>
                     <button class="quizzCreator4">Acessar quizz</button>
-                    <div class="voltarHome">Voltar pra home</div>
+                    <button class="voltarHome">Voltar pra home</button>
                 </div>
                 
         </main>
 
-        <div class="botao b1" onclick="trocarTela(this)">1</div>
-        <div class="botao b2" onclick="trocarTela(this)">2</div>
-        <div class="botao b3" onclick="trocarTela(this)">3</div>
+        <div class="botao b1 inativo" onclick="trocarTela(this)">1</div>
+        <div class="botao b2 inativo" onclick="trocarTela(this)">2</div>
+        <div class="botao b3 inativo" onclick="trocarTela(this)">3</div>
 
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-        <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
+        <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
         <script src="script.js"></script>
     </body>
 </html>

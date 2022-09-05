@@ -338,16 +338,20 @@ header span{
 
 .final{
     margin-bottom: 90px;
+    flex-direction: column;
 }
 
 
 /*CLASSES RELACIONADAS A TELA 3*/
 
-.tela-3, .tela-3 .inativo{
+.tela-3{
     display: none;     
 }
 .tela-3.selecionada{
     display: initial;
+}
+.tela-3, .tela-3 .inativo{
+    display: none;     
 }
 .comecoQuizzCreator, .perguntasQuizzCreator, .niveisQuizzCreator, .fimQuizzCreator{
     display: flex;
@@ -356,6 +360,7 @@ header span{
     align-items: center;
     margin: 0 auto;
 }
+
 .tituloPag {
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
@@ -383,9 +388,8 @@ header span{
 .tituloQuizzCreator{
     margin-top: 20px;
 }
-.tituloQuizzCreator, .urlQuizzCreator, .qtePerguntasQuizzCreator, .qteNiveisQuizzCreator, .perguntaQuizzCreator, 
-.corQuizzCreator, .resCorretaQuizzCreator, .urlImgQuizzCreator, .resInCorretaQuizzCreator, .urlImgQuizzCreator,
-.tituloNivelQuizzCreator, .qteAcertosQuizzCreator, .descricaoQuizzCreator, .urlNivelImgQuizzCreator {
+
+input {
     background-color: #FFFFFF;
     height: 46px;
     width: 564px;
@@ -399,6 +403,7 @@ header span{
     border-radius: 5px;
     border: 1px solid #d1d1d1;
     padding: 23.15px;
+    margin-left: 20px;
 }
 .urlImgQuizzCreator{
     margin-bottom: 32px;
@@ -437,27 +442,34 @@ header span{
     font-size: 20px;
     line-height: 24px;
     margin-left: 20px;
-    align-self: flex-start ;
-    align-items: flex-start;
-    align-content: flex-start;
     margin-top: 27px;
     margin-bottom: 24px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.titulocontainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 256px;
 }
 .perguntaCurto{
-    background-color: #FFFFFF;
+    background-color: pink
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;    
     width: 600px;
-    margin: 0 auto;
-    margin-bottom: 22px;    
+    margin-bottom: 24px;   
+    margin-top: 27px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
     border-radius: 5px;
 }
 .iconeTask {
     font-size: 26px;
+    color: #000000;
     margin-right: 25px;
 }
 .imgFim{
@@ -466,6 +478,17 @@ header span{
     margin-bottom: 45px;
     border-radius: 10px;
 }
+.textobotao{
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    font-style: none;
+    line-height: 22px;
+    color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+}
 .voltarHome {
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
@@ -473,10 +496,6 @@ header span{
     line-height: 25px;
     color: #818181;
     margin-top: 10px;
-}
-
-.perguntasQuizzCreator .inativo{
-    display: none;
 }
 
 /*RESPONSIVIDADE DA TELA 1*/
@@ -629,19 +648,14 @@ header span{
 @media ( max-width: 1100px){
     .containerQuizzCreator, .containerQuizzCreatorPerguntas, .containerNiveisQuizzCreator{
         width: 100%;
-        overflow-x: hidden;
     }
-    .perguntaCurto{
+    form {
         width: 100%;
     }
-    
-    .tituloQuizzCreator, .urlQuizzCreator, .qtePerguntasQuizzCreator, .qteNiveisQuizzCreator, .perguntaQuizzCreator, 
-.corQuizzCreator, .resCorretaQuizzCreator, .urlImgQuizzCreator, .resInCorretaQuizzCreator, .urlImgQuizzCreator,
-.tituloNivelQuizzCreator, .qteAcertosQuizzCreator, .descricaoQuizzCreator, .urlNivelImgQuizzCreator {
-    width: 90%;
+    input {
+    width: 95%;
 }
     .quizzCreator1, .quizzCreator2, .quizzCreator3, .quizzCreator4, .imgFim{
         width: 90%;
     }
 }
-

@@ -53,8 +53,10 @@ function carregarQuizzes(resposta){
 
 	if(meusQuizzes.length !== 0){
 		const item = `
-		<span>Seus Quizzes</span>
-        <ion-icon name="add-circle" onclick = "criarQuizz()"></ion-icon>
+		<div class="boxone">
+			<span>Seus Quizzes</span>
+        	<ion-icon name="add-circle" onclick = "criarQuizz()"></ion-icon>
+		</div>
         <ul class="meusQuizzes"></ul>
         <span>Todos os Quizzes</span>
         <ul class="quizzesGerais"></ul>`;
@@ -64,12 +66,16 @@ function carregarQuizzes(resposta){
 		const listaMeusQuizzes = document.querySelector('.meusQuizzes');
 
 		for(let i = 0; i < meusQuizzes.length; i++){
+			const quizzSerializada = localStorage.getItem(meusQuizzes[i]);
+
+			const quizz = JSON.parse(quizzSerializada);
+
 			const item = `
 			<li onclick = "getQuizz(this)">
-				<q class = "inativo">${meusQuizzes[i].id}</q>
+				<q class = "inativo">${meusQuizzes[i]}</q>
 				<figure>
-					<img src="${meusQuizzes[i].image}">
-					<figcaption>${meusQuizzes[i].title}</figcaption>
+					<img src="${quizz[i].image}">
+					<figcaption>${quizz[i].title}</figcaption>
 				</figure>
 			</li>`;
 

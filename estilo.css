@@ -155,7 +155,7 @@ header span{
 .container span{
     display: inline-flex;
     width: 1051px;
-    margin-top: 10px;
+    margin-top: 77px;
     justify-content: start;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
@@ -307,31 +307,43 @@ header span{
     font-weight: 700;
     font-size: 24px;
     line-height: 27px;
-    margin: 0 auto;
     margin-top: 60px;
     display: flex;
     justify-content: center;
     margin-bottom: 27px;
 }
-.containerQuizzCreator, .containerQuizzCreatorPerguntas, .containerNiveisQuizzCreator{
-    background-color: #FFFFFF;
+.containerQuizzCreatorPerguntas, .containerNiveisQuizzCreator{
+    background-color:#FFFFFF;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;    
+    justify-content: space-around;
+    align-items: center;
     width: 600px;
-    margin: 0 auto;
+    height: 875px;
+    padding: 27px 0;
     margin-bottom: 22px;    
     box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
     border-radius: 5px;
 }
+
+.containerQuizzCreator{
+    width: 600px;
+    height: 256px;
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background: #FFFFFF;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+}
+
 .tituloQuizzCreator{
     margin-top: 20px;
 }
-.tituloQuizzCreator, .urlQuizzCreator, .qtePerguntasQuizzCreator, .qteNiveisQuizzCreator, .perguntaQuizzCreator, 
-.corQuizzCreator, .resCorretaQuizzCreator, .urlImgQuizzCreator, .resInCorretaQuizzCreator, .urlImgQuizzCreator,
-.tituloNivelQuizzCreator, .qteAcertosQuizzCreator, .descricaoQuizzCreator, .urlNivelImgQuizzCreator {
+
+input {
     background-color: #FFFFFF;
     height: 46px;
     width: 564px;
@@ -341,10 +353,9 @@ header span{
     font-style: italic;
     line-height: 22px;
     color: #bababa;
-    margin-bottom: 14px;
     border-radius: 5px;
     border: 1px solid #d1d1d1;
-    padding: 23.15px;
+    margin: 5px 0;
 }
 .urlImgQuizzCreator{
     margin-bottom: 32px;
@@ -361,7 +372,7 @@ header span{
     border-radius: 15px;
     color: #FFFFFF;
     border: none;
-    margin-top: 75px;
+    margin: 40px 0;
 }
 .quizzCreator4 {
     background-color: #EC362D;
@@ -382,29 +393,58 @@ header span{
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
-    margin-left: 20px;
-    align-self: flex-start ;
-    align-items: flex-start;
-    align-content: flex-start;
     margin-top: 27px;
     margin-bottom: 24px;
+    width: 100%;
+    justify-content: start;
+    padding-left: 3%;
+}
+
+.titulocontainer{
+    display: flex;
+    justify-content: start;
+    position: relative;
+    width: 100%;
+}
+
+.titulocontainer ion-icon{
+    width: 30px;
+    height: 30px;
+    color:#000000;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    cursor: pointer;
 }
 
 .perguntaCurto{
     background-color: #FFFFFF;
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;    
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
     width: 600px;
-    margin: 0 auto;
-    margin-bottom: 22px;    
+    padding: 27px 0;
+    margin-bottom: 22px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
     border-radius: 5px;
 }
+
+.caixinhaperguntas{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.caixinhaperguntas input{
+    padding: 0;
+}
+
 .iconeTask {
-    font-size: 26px;
+    font-size: 25px;
     margin-right: 25px;
 }
 .imgFim{
@@ -412,6 +452,22 @@ header span{
     width: 500px;
     margin-bottom: 45px;
     border-radius: 10px;
+}
+.textobotao{
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 22px;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 0;
+    cursor: pointer;
+}
+
+form {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
 }
 .voltarHome {
     font-family: 'Roboto', sans-serif;
@@ -474,11 +530,18 @@ header span{
         overflow-x: hidden;
     }
         
-    .tituloQuizzCreator, .urlQuizzCreator, .qtePerguntasQuizzCreator, .qteNiveisQuizzCreator, .perguntaQuizzCreator, 
-.corQuizzCreator, .resCorretaQuizzCreator, .urlImgQuizzCreator, .resInCorretaQuizzCreator, .urlImgQuizzCreator,
-.tituloNivelQuizzCreator, .qteAcertosQuizzCreator, .descricaoQuizzCreator, .urlNivelImgQuizzCreator {
-    width: 90%;
-}
+    input {
+        width: 90%;
+    }
+
+    .caixinhaperguntas{
+        width: 100%;
+    }
+
+    .nomePart{
+        padding-left: 5%;
+    }
+
     .quizzCreator1, .quizzCreator2, .quizzCreator3, .quizzCreator4, .imgFim{
         width: 90%;
     }

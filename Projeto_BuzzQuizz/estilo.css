@@ -1,0 +1,476 @@
+/*IMPORT DA FONTE ROBOTO*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+
+
+/*CLASSES GLOBAIS*/
+body{
+    background-color: #FAFAFA; 
+    font-family: 'Roboto', sans-serif;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+header{
+    width: 100%;
+    height: 69px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #EC362D;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+header span{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 37px;
+    color: #FFFFFF;
+}
+
+.botao{
+    width: 30px;
+    height: 30px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #FFFFFF;
+    border-radius: 20px;
+    border: 0.5px solid #000000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.b1{
+    position: fixed;
+    top: 10px;
+    right: 100px;
+    cursor: pointer;
+}
+
+
+.b2{
+    position: fixed;
+    top: 10px;
+    right: 60px;
+    cursor: pointer;
+}
+
+
+.b3{
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+}
+
+
+.selecionada{
+    display: initial;
+}
+
+.inativo{
+    display: none;
+}
+.comecoQuizzCreator .inativo{
+    display: none;
+}
+
+/*CLASSES RELACIONADAS A TELA 1*/
+
+.tela-1{
+    display: none;
+}
+.tela-1.selecionada{
+    display: initial;
+}
+
+.container{
+    width: 100%;
+    height: 100%;
+    padding: 0 120px 77px 120px;
+
+    position: relative;
+}
+
+.container section{
+    width: 1051px;
+    height: 181px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: #FAFAFA;
+    border: 1px dashed #D5D5D5;
+    border-radius: 5px;
+    margin: 77px 0 0 0;
+}
+
+.container section span{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: center;
+    color: #B9B9B9;
+
+    margin: 0 0 25px 0;
+}
+
+.container section button{
+    width: 151px;
+    height: 40px;
+    background: #FAFAFA;
+    border: 1px dashed #EC362D;
+    border-radius: 50px;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 18px;
+    text-align: center;
+    color: #EC362D;
+}
+
+.container section button:hover{
+    background-color: #EC362D;
+    color: #FAFAFA;
+}
+
+.container span{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    text-align: center;
+    color: #000000;
+    display: inline-block;
+    margin: 77px 0 0 0;
+}
+
+.container ion-icon{
+    width: 30px;
+    height: 30px;
+    color: red;
+    cursor: pointer;
+
+    position: absolute;
+    top: 72px;
+    left: 250px;
+}
+
+.container ul{
+    width: 1051px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.container ul li{
+    margin: 5px;
+}
+
+.container ul li figure{
+    width: 340px;
+    height: 181px;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.container ul li figure img{
+    width: 340px;
+    height: 181px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, 0.5) 64.58%, #000000 100%);
+    border-radius: 5px;
+}
+
+.container ul li figure figcaption{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 19px;
+    text-align: center;
+    color: #FFFFFF;
+    position: absolute;
+    bottom: 10px;
+    right: auto;
+}
+
+/*CLASSES RELACIONADAS A TELA 2*/
+
+.tela-2{
+    display: none;
+}
+.tela-2.selecionada{
+    display: initial;
+}
+
+.banner{
+    height: 227px;
+    background-size: cover;
+    opacity: 0.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner h2{
+    
+    color: white;
+    font-size: 39px;
+    font-weight: 400;
+}
+
+.tela-2 .perguntas, .titulo, .pergunta > div:nth-child(2) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.tela-2 .pergunta{
+    width: 759px;
+    padding-top: 28px;
+    padding-bottom: 15px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
+    margin-top: 42px;
+    background-color: white;
+}
+
+.tela-2 .titulo{
+    width: 688px;
+    height: 138px;
+    font-weight: 700;
+    font-size: 23px;
+    color: white;
+    margin: 0px 38px 20px 38px;
+}
+
+
+.tela-2 .pergunta > div:nth-child(2){
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0px 10px 0px 38px;
+}
+
+.tela-2 .pergunta img {
+    width: 100%;
+    height: 175px;
+    object-fit: cover;
+}
+
+.tela-2 .resposta{
+    width: 330px;
+    margin: 0px 25px 20px 0px;
+
+}
+
+
+
+
+/*CLASSES RELACIONADAS A TELA 3*/
+
+.tela-3{
+    display: none;     
+}
+.tela-3.selecionada{
+    display: initial;
+}
+.tela-3, .tela-3 .inativo{
+    display: none;     
+}
+.comecoQuizzCreator, .perguntasQuizzCreator, .niveisQuizzCreator, .fimQuizzCreator{
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.tituloPag {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 27px;
+    margin: 0 auto;
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 27px;
+}
+.containerQuizzCreator, .containerQuizzCreatorPerguntas, .containerNiveisQuizzCreator{
+    background-color: #FFFFFF;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;    
+    width: 600px;
+    margin: 0 auto;
+    margin-bottom: 22px;    
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
+    border-radius: 5px;
+}
+.tituloQuizzCreator{
+    margin-top: 20px;
+}
+
+input {
+    background-color: #FFFFFF;
+    height: 46px;
+    width: 564px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 22px;
+    color: #bababa;
+    margin-bottom: 14px;
+    border-radius: 5px;
+    border: 1px solid #d1d1d1;
+    padding: 23.15px;
+    margin-left: 20px;
+}
+.urlImgQuizzCreator{
+    margin-bottom: 32px;
+}
+.quizzCreator1, .quizzCreator2, .quizzCreator3{
+    background-color: #EC362D;
+    font-family: 'Roboto', sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    height: 54px;
+    width: 368px;
+    border-radius: 15px;
+    color: #FFFFFF;
+    border: none;
+    margin-top: 75px;
+}
+.quizzCreator4 {
+    background-color: #EC362D;
+    font-family: 'Roboto', sans-serif;
+    font-size: 21px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    height: 54px;
+    width: 220px;
+    border-radius: 15px;
+    color: #FFFFFF;
+    border: none;
+    margin-top: 45px;
+}
+.nomePart {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 24px;
+    margin-left: 20px;
+    margin-top: 27px;
+    margin-bottom: 24px;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+.titulocontainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+.perguntaCurto{
+    background-color: pink
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;    
+    width: 600px;
+    margin-bottom: 24px;   
+    margin-top: 27px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
+    border-radius: 5px;
+}
+.iconeTask {
+    font-size: 25px;
+    margin-right: 25px;
+}
+.imgFim{
+    height: 266px;
+    width: 500px;
+    margin-bottom: 45px;
+    border-radius: 10px;
+}
+.textobotao{
+    display: flex;
+    font-family: 'Roboto', sans-serif;
+    font-size: 19px;
+    font-weight: 400;
+    font-style: none;
+    line-height: 22px;
+    color: #FFFFFF;
+    justify-content: center;
+    align-items: center;
+}
+.voltarHome {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 21px;
+    line-height: 25px;
+    color: #818181;
+    margin-top: 10px;
+}
+
+/*RESPONSIVIDADE DA TELA 1*/
+
+@media ( max-width: 1100px){
+    .container{
+        padding: 30px 0;
+    }
+
+    .container section{
+        width: 90%;
+        margin: 0 auto;
+    }
+
+    .container span{
+        margin: 30px 0 0 5%;
+    }
+
+    .container section span{
+        margin: 0 0 25px 0;
+    }
+
+    .container ul{
+        width: 90%;
+        margin: 0 auto;
+        flex-direction: column;
+    }
+
+    .container ul li{
+        margin: 5px 0;
+    }
+}
+
+/*RESPONSIVIDADE DA TELA 2*/
+
+@media ( max-width: 1100px){}
+
+/*RESPONSIVIDADE DA TELA 3*/
+
+@media ( max-width: 1100px){
+    .containerQuizzCreator, .containerQuizzCreatorPerguntas, .containerNiveisQuizzCreator{
+        width: 100%;
+        overflow-x: hidden;
+    }
+        
+    input {
+    width: 90%;
+}
+    .quizzCreator1, .quizzCreator2, .quizzCreator3, .quizzCreator4, .imgFim{
+        width: 90%;
+    }
+}
+

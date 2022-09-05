@@ -9,6 +9,8 @@ let tituloQuizz;
 let urlQuizz;
 let nPerguntas;
 let nNiveis;
+let questoes = [];
+let niveis = [];
 
 const url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/';
 
@@ -213,7 +215,7 @@ let templatePerguntas;
 let templateNiveis;
 let templateObjPerguntas;
 let templateObjNiveis;
-/*Variavel para montar as perguntas e colocar no objeto*/let templatePergResposta;
+/*Variavel para montar as perguntas e colocar no objeto*/let templatePergResposta = {};
 /*Variavel para montar o objeto*/ let objeto;
 //Função para verificar as resposta do começo do quizz
 
@@ -222,6 +224,10 @@ function confereDados(){
 	urlQuizz = document.getElementById("urlQuizzCreator").value;
 	nPerguntas = Number(document.getElementById("qtePerguntasQuizzCreator").value);
 	nNiveis = Number(document.getElementById("qteNiveisQuizzCreator").value);
+
+	meuNovoQuizz.title = tituloQuizz;
+	meuNovoQuizz.image = urlQuizz;
+
 	inserePerguntas(nPerguntas);
 	insereNiveis(nNiveis);
 	proxPagQuizzI();
@@ -262,59 +268,41 @@ function inserePerguntas(resposta){
 
 //Função para verificar as perguntas das respostas
 function conferePerguntas(){
-	templatePergResposta = `{
-		title: perguntsperguntsRespObj[],
-		color: "#123456",
-		answers: [
-			{
-				text: "Texto da resposta 1",
-				image: "https://http.cat/411.jpg",
-				isCorrectAnswer: true
-			},
-			{
-				text: "Texto da resposta 2",
-				image: "https://http.cat/412.jpg",
-				isCorrectAnswer: false
-			}
-		]
-	}`
 
-	for(let i = 0; i < (nPerguntas + 1); i++ ){
-		//For para rodar de acordo com o container de uma pergunta
+	let answers = [];
+	
+	for(let i = 1; i <= nPerguntas; i++ ){
+		let answer = {};
+
 		let textInputs = document.querySelectorAll(`.p${i}`);
-		console.log(textInputs);
 		let numerodeRespostas = textInputs.length;
-		console.log(numerodeRespostas);
-		for(let index = i+2; index < numerodeRespostas; index++){
-			let valoresInputs = textInputs[index].value;
-			if(valoresInputs !== ""){
-			console.log(valoresInputs);
-			perguntsRespObj.push(valoresInputs);/*Esse array tem todos os valores que o input coletou*/}
-			if(valoresInputs === ""){
-				break
-			}
-			/*templatePergResposta = `{
-				title: perguntsperguntsRespObj[${i}],
-				color: perguntsperguntsRespObj[${i+1}],
-				answers: [
-					{
-						text: perguntsperguntsRespObj[${index}],
-						image: perguntsperguntsRespObj[${index+1}],
-						isCorrectAnswer: true
-					},
-					{
-						text: perguntsperguntsRespObj[${i}],
-						image: perguntsperguntsRespObj[${i+6}],
-						isCorrectAnswer: false
-					}
-				]
-			}`*/	
-		}					
+
+		templatePergResposta.title = textInputs[0].value;
+		templatePergResposta.color = textInputs[1].value;
+		answer.text = textInputs[2].value;
+		answer.image = textInputs[3].value;
+		answer.isCorrectAnswer = true;
+
+		answers.push(answer);
+
+		for(let index = 4; index <= numerodeRespostas; index += 2){
+
+			const item = `
+			{
+				text: ${textInputs[index]},
+				image: ${textInputs[index + 1]},
+				isCorrectAnswer: false
+			}`;
+
+			answers.push(item);
+		}
+		templatePergResposta.answers = 	answers;
+		questoes.push(templatePergResposta);
+		answers = [];
 	}
 
-	console.log(perguntsRespObj)
-	proxPagQuizzII();	
-
+	meuNovoQuizz.questions = questoes;
+	proxPagQuizzII();
 }
 
 let inputsNiveis; //let para guardar os valores dos inputs

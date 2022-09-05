@@ -9,10 +9,8 @@ let tituloQuizz;
 let urlQuizz;
 let nPerguntas;
 let nNiveis;
-let questoes = [];
-let niveis = [];
 
-const url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/';
+const url = 'https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes/'
 
 function trocarTela(botaolecionado){
     const telaselecionada = document.querySelector('.selecionada');
@@ -55,10 +53,8 @@ function carregarQuizzes(resposta){
 
 	if(meusQuizzes.length !== 0){
 		const item = `
-		<div class="boxone">
-			<span>Seus Quizzes</span>
-        	<ion-icon name="add-circle" onclick = "criarQuizz()"></ion-icon>
-		</div>
+		<span>Seus Quizzes</span>
+        <ion-icon name="add-circle" onclick = "criarQuizz()"></ion-icon>
         <ul class="meusQuizzes"></ul>
         <span>Todos os Quizzes</span>
         <ul class="quizzesGerais"></ul>`;
@@ -68,16 +64,12 @@ function carregarQuizzes(resposta){
 		const listaMeusQuizzes = document.querySelector('.meusQuizzes');
 
 		for(let i = 0; i < meusQuizzes.length; i++){
-			const quizzSerializada = localStorage.getItem(meusQuizzes[i]);
-
-			const quizz = JSON.parse(quizzSerializada);
-
 			const item = `
 			<li onclick = "getQuizz(this)">
-				<q class = "inativo">${meusQuizzes[i]}</q>
+				<q class = "inativo">${meusQuizzes[i].id}</q>
 				<figure>
-					<img src="${quizz[i].image}">
-					<figcaption>${quizz[i].title}</figcaption>
+					<img src="${meusQuizzes[i].image}">
+					<figcaption>${meusQuizzes[i].title}</figcaption>
 				</figure>
 			</li>`;
 
@@ -134,7 +126,7 @@ function carregarQuizzes(resposta){
 			</li>`
 
 			listaQuizzesGerais.innerHTML = listaQuizzesGerais.innerHTML + item;
-		};
+		}
 
 	}
 
@@ -215,103 +207,79 @@ let templatePerguntas;
 let templateNiveis;
 let templateObjPerguntas;
 let templateObjNiveis;
-/*Variavel para montar as perguntas e colocar no objeto*/let templatePergResposta = {};
+/*Variavel para montar as perguntas e colocar no objeto*/let templatePergResposta;
 /*Variavel para montar o objeto*/ let objeto;
 //Função para verificar as resposta do começo do quizz
-
 function confereDados(){
 	tituloQuizz = document.getElementById("tituloQuizzCreator").value;
 	urlQuizz = document.getElementById("urlQuizzCreator").value;
 	nPerguntas = Number(document.getElementById("qtePerguntasQuizzCreator").value);
 	nNiveis = Number(document.getElementById("qteNiveisQuizzCreator").value);
-
-	meuNovoQuizz.title = tituloQuizz;
-	meuNovoQuizz.image = urlQuizz;
-
 	inserePerguntas(nPerguntas);
 	insereNiveis(nNiveis);
 	proxPagQuizzI();
 }
-
-//Função para inserir o box da pergunta reduzida
-function inserePerguntas(resposta){
-	let qteP = resposta;
-	const perguntasItem = document.querySelector(".perguntasNovas");
-		for (let i = 3; i <= qteP; i++){
-			templatePerguntas = 
-			`<li class="perguntaCurto">
-				<div class="titulocontainer">
-					<p class="nomePart">Pergunta ${i}</p>
-					<ion-icon classe="iconeTask" onclick="mostrarCampos(this)" name="create-outline"></ion-icon>
-				</div>
-				<div class="perguntas${i} inativo caixinhaperguntas"> 
-					<input class="p${i}" type="text"  required  required minlength="20" placeholder="Texto da pergunta">
-					<input class="p${i}" required pattern="#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?"
-					oninvalid="alert('O formato da cor inserida deve iniciar com #, os três primeiros valores devem variar entre as letra a-f e os números 0-9, os três últimos valores devem varias entre as letras a-f e os valores 0-9')" placeholder="Cor de fundo da pergunta" type="text" > 
-					<div class="nomePart">Resposta correta</div>
-					<input class="p${i}" required type="text" minlength="1" placeholder="Resposta correta">
-					<input class="p${i}" required type="url" placeholder="URL da imagem"> 
-					<div class="nomePart">Respostas incorretas</div>
-					<input class="p${i}" required type="text" minlength="1" placeholder="Resposta incorreta 1">
-					<input class="p${i}" required type="url" placeholder="URL da imagem 1">
-					<input class="p${i}" type="text" minlength="1" placeholder="Resposta incorreta 2">
-					<input class="p${i}" type="url" placeholder="URL da imagem 2">
-					<input class="p${i}" type="text" minlength="1" placeholder="Resposta incorreta 3">
-					<input class="p${i}" type="url" placeholder="URL da imagem 3">
-				</div>
-			</li>`;
-			perguntasItem.innerHTML += templatePerguntas;
-		}
-}
-
 /*Variavel das respostas dos inputs*/ let perguntsRespObj=[];
 
 //Função para verificar as perguntas das respostas
 function conferePerguntas(){
-
-	let answers = [];
-	
-	for(let i = 1; i <= nPerguntas; i++ ){
-		let answer = {};
-
-		let textInputs = document.querySelectorAll(`.p${i}`);
-		let numerodeRespostas = textInputs.length;
-
-		templatePergResposta.title = textInputs[0].value;
-		templatePergResposta.color = textInputs[1].value;
-		answer.text = textInputs[2].value;
-		answer.image = textInputs[3].value;
-		answer.isCorrectAnswer = true;
-
-		answers.push(answer);
-
-		for(let index = 4; index <= numerodeRespostas; index += 2){
-
-			const item = `
+	templatePergResposta = `{
+		title: perguntsperguntsRespObj[],
+		color: "#123456",
+		answers: [
 			{
-				text: ${textInputs[index]},
-				image: ${textInputs[index + 1]},
+				text: "Texto da resposta 1",
+				image: "https://http.cat/411.jpg",
+				isCorrectAnswer: true
+			},
+			{
+				text: "Texto da resposta 2",
+				image: "https://http.cat/412.jpg",
 				isCorrectAnswer: false
-			}`;
+			}
+		]
+	}`
 
-			answers.push(item);
+	for(let i = 0; i < (nPerguntas + 1); i++ ){
+		//For para rodar de acordo com o container de uma pergunta
+		let textInputs = document.querySelectorAll(`.p${i}`);
+		console.log(textInputs);
+		let numerodeRespostas = textInputs.length;
+		console.log(numerodeRespostas);
+		for(let index = i+2; index < numerodeRespostas; index++){
+			let valoresInputs = textInputs[index].value;
+			if(valoresInputs !== ""){
+			console.log(valoresInputs);
+			perguntsRespObj.push(valoresInputs);/*Esse array tem todos os valores que o input coletou*/}
+			if(valoresInputs === ""){
+				break
+			}
+			/*templatePergResposta = `{
+				title: perguntsperguntsRespObj[${i}],
+				color: perguntsperguntsRespObj[${i+1}],
+				answers: [
+					{
+						text: perguntsperguntsRespObj[${index}],
+						image: perguntsperguntsRespObj[${index+1}],
+						isCorrectAnswer: true
+					},
+					{
+						text: perguntsperguntsRespObj[${i}],
+						image: perguntsperguntsRespObj[${i+6}],
+						isCorrectAnswer: false
+					}
+				]
+			}`*/	
+			}					
 		}
-		templatePergResposta.answers = 	answers;
-		questoes.push(templatePergResposta);
-		answers = [];
+		console.log(perguntsRespObj)
+	proxPagQuizzII();	
 	}
-
-	meuNovoQuizz.questions = questoes;
-	proxPagQuizzII();
-}
-
 let inputsNiveis; //let para guardar os valores dos inputs
 //Função para verificar as respostas dos niveis
-
 function confereNiveis(){
-
 	for(let i = 0; i < (nNiveis + 1); i++ ){
-		let nivelInputs = document.querySelectorAll(`.n${i}`);
+	let nivelInputs = document.querySelectorAll(`.n${i}`);
 		console.log(nivelInputs);
 		let numerodeNiveis = nivelInputs.length;
 		console.log(numerodeNiveis);
@@ -319,27 +287,46 @@ function confereNiveis(){
 			let valoresInputsN = textInputs[index].value;
 			if(valoresInputsN !== ""){
 			console.log(valoresInputsN);
-			inputsNiveis.push(valoresInputsN);
-		}/*Esse array tem todos os valores que o input coletou*/
+			inputsNiveis.push(valoresInputsN);/*Esse array tem todos os valores que o input coletou*/}
 			if(valoresInputsN === ""){
 				break
-			}
-		}
-	}
-
+			}}}
 	for (let i =0; i<(nNiveis+1); i++){
 		let templateNivelobj = `{
 			title: inputsNiveis[i],
 			image: inputsNiveis[i+1]
 			text: inputsNiveis[i+2],
 			minValue: inputsNiveis[i+3]
-			}`
+		}`
 	}
-
 	proxPagQuizzIII();
 }
-
-
+//Função para inserir o box da pergunta reduzida
+function inserePerguntas(resposta){
+	let qteP = resposta;
+	const perguntasItem = document.querySelector(".perguntasNovas");
+		for (let i = 3; i <= qteP; i++){
+			templatePerguntas = 
+			`<li class="perguntaCurto"><div class="titulocontainer"><p class="nomePart">Pergunta ${i}</p><ion-icon classe="iconeTask" onclick="mostrarCampos(this)" name="create-outline"></ion-icon></div>
+			<div class="perguntas${i} inativo"> 
+			<input class="p${i}" type="text"  required  required minlength="20" placeholder="Texto da pergunta">
+			<input class="p${i}" required pattern="#[0-9a-fA-F]{3}([0-9a-fA-F]{3})?"
+			oninvalid="alert('O formato da cor inserida deve iniciar com #, os três primeiros valores devem variar entre as letra a-f e os números 0-9,
+			 os três últimos valores devem varias entre as letras a-f e os valores 0-9')" placeholder="Cor de fundo da pergunta" type="text" > 
+			<div class="nomePart">Resposta correta</div>
+			<input class="p${i}" required type="text" minlength="1" placeholder="Resposta correta">
+			<input class="p${i}" required type="url" placeholder="URL da imagem"> 
+			<div class="nomePart">Respostas incorretas</div>
+			<input class="p${i}" required type="text" minlength="1" placeholder="Resposta incorreta 1">
+			<input class="p${i}" required type="url" placeholder="URL da imagem 1">
+			<input class="p${i}" type="text" minlength="1" placeholder="Resposta incorreta 2">
+			<input class="p${i}" type="url" placeholder="URL da imagem 2">
+			<input class="p${i}" type="text" minlength="1" placeholder="Resposta incorreta 3">
+			<input class="p${i}" type="url" placeholder="URL da imagem 3">
+	</div> </li>`;
+			perguntasItem.innerHTML += templatePerguntas;
+		}
+}
 /*const quizzCriado = {
 	title: tituloQuizz,
 	image: urlQuizz,
@@ -407,8 +394,7 @@ function confereNiveis(){
 			minValue: 50
 		}
 	]
-}
-*/
+}*/
 
 function insereNiveis(resposta){
 	let qteN = resposta;
@@ -423,28 +409,34 @@ function insereNiveis(resposta){
 			<input class="n${i}" required type="text" minlength="30" placeholder="Descrição do nível">
 			</div></li>`;
 			niveisItem.innerHTML += templateNiveis;
-		}}
+		}
+}
+
 function mostrarCampos(perguntaN){
 	const camposP = perguntaN;
 	const divP = camposP.parentNode;
 	const divPP = divP.parentNode;
 	const divF = divPP.childNodes;
-	const divPerguntas = divF[3];
-	divPerguntas.classList.toggle("inativo")}
+	const divPerguntas = divF[2];
+	divPerguntas.classList.remove("inativo")
+}
 let perguntasObj = [];
+
 function proxPagQuizzI(){
     const p1 = document.querySelector('.comecoQuizzCreator');
     const p2 = document.querySelector('.perguntasQuizzCreator');
 	p1.classList.add("inativo");
-	p2.classList.remove("inativo");}
+	p2.classList.remove("inativo");
+}
 function proxPagQuizzII(){
 	const p2 = document.querySelector('.perguntasQuizzCreator');
 	const p3 = document.querySelector('.niveisQuizzCreator');
 	p2.classList.add("inativo");
-	p3.classList.remove("inativo");}
-function proxPagQuizzIII(){	
+	p3.classList.remove("inativo");
+}
+function proxPagQuizzIII() {	
 	const p3 = document.querySelector('.niveisQuizzCreator');
 	const p4 = document.querySelector('.fimQuizzCreator');
 	p3.classList.add("inativo");
-	p4.classList.remove("inativo");
+	p4.classList.remove("inativo");   
 }

@@ -91,9 +91,6 @@ header span{
     width: 100%;
     height: 100%;
     padding: 0 120px 77px 120px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 
     position: relative;
 }
@@ -117,7 +114,6 @@ header span{
     font-size: 20px;
     text-align: center;
     color: #B9B9B9;
-    display: initial;
 
     margin: 0 0 25px 0;
 }
@@ -134,7 +130,6 @@ header span{
     font-size: 18px;
     text-align: center;
     color: #EC362D;
-    cursor: pointer;
 }
 
 .container section button:hover{
@@ -142,26 +137,14 @@ header span{
     color: #FAFAFA;
 }
 
-.container .boxone{
-    height: 30px;
-    width: 170px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 77px 0 0 0;
-    background-color: green;
-}
-
 .container span{
-    display: inline-flex;
-    width: 1051px;
-    margin-top: 77px;
-    justify-content: start;
     font-family: 'Roboto', sans-serif;
     font-weight: 700;
     font-size: 20px;
     text-align: center;
     color: #000000;
+    display: inline-block;
+    margin: 77px 0 0 0;
 }
 
 .container ion-icon{
@@ -169,6 +152,10 @@ header span{
     height: 30px;
     color: red;
     cursor: pointer;
+
+    position: absolute;
+    top: 72px;
+    left: 250px;
 }
 
 .container ul{
@@ -190,7 +177,6 @@ header span{
     display: flex;
     justify-content: center;
     position: relative;
-    cursor: pointer;
 }
 
 .container ul li figure img{
@@ -307,38 +293,25 @@ header span{
     font-weight: 700;
     font-size: 24px;
     line-height: 27px;
+    margin: 0 auto;
     margin-top: 60px;
     display: flex;
     justify-content: center;
     margin-bottom: 27px;
 }
-.containerQuizzCreatorPerguntas, .containerNiveisQuizzCreator{
-    background-color:#FFFFFF;
+.containerQuizzCreator, .containerQuizzCreatorPerguntas, .containerNiveisQuizzCreator{
+    background-color: #FFFFFF;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: center;
+    align-items: center;    
     width: 600px;
-    height: 875px;
-    padding: 27px 0;
+    margin: 0 auto;
     margin-bottom: 22px;    
     box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
     border-radius: 5px;
 }
-
-.containerQuizzCreator{
-    width: 600px;
-    height: 256px;
-    padding: 20px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    background: #FFFFFF;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.05);
-}
-
 .tituloQuizzCreator{
     margin-top: 20px;
 }
@@ -353,9 +326,11 @@ input {
     font-style: italic;
     line-height: 22px;
     color: #bababa;
+    margin-bottom: 14px;
     border-radius: 5px;
     border: 1px solid #d1d1d1;
-    margin: 5px 0;
+    padding: 23.15px;
+    margin-left: 20px;
 }
 .urlImgQuizzCreator{
     margin-bottom: 32px;
@@ -372,7 +347,7 @@ input {
     border-radius: 15px;
     color: #FFFFFF;
     border: none;
-    margin: 40px 0;
+    margin-top: 75px;
 }
 .quizzCreator4 {
     background-color: #EC362D;
@@ -393,58 +368,35 @@ input {
     font-weight: 700;
     font-size: 20px;
     line-height: 24px;
+    margin-left: 20px;
     margin-top: 27px;
     margin-bottom: 24px;
-    width: 100%;
-    justify-content: start;
-    padding-left: 3%;
+    justify-content: flex-start;
+    align-items: flex-start;
 }
-
 .titulocontainer{
     display: flex;
-    justify-content: start;
-    position: relative;
-    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    height: 256px;
 }
-
-.titulocontainer ion-icon{
-    width: 30px;
-    height: 30px;
-    color:#000000;
-    position: absolute;
-    top: 20px;
-    right: 40px;
-    cursor: pointer;
-}
-
 .perguntaCurto{
-    background-color: #FFFFFF;
+    background-color: pink
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;    
     width: 600px;
-    padding: 27px 0;
-    margin-bottom: 22px;
+    margin-bottom: 24px;   
+    margin-top: 27px;
     box-shadow: 0px 0px 10px rgba(0,0,0,0.05);
     border-radius: 5px;
 }
-
-.caixinhaperguntas{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-}
-
-.caixinhaperguntas input{
-    padding: 0;
-}
-
 .iconeTask {
-    font-size: 25px;
+    font-size: 26px;
+    color: #000000;
     margin-right: 25px;
 }
 .imgFim{
@@ -454,19 +406,14 @@ input {
     border-radius: 10px;
 }
 .textobotao{
+    display: flex;
     font-family: 'Roboto', sans-serif;
     font-size: 19px;
     font-weight: 400;
+    font-style: none;
     line-height: 22px;
     color: #FFFFFF;
-    text-align: center;
-    padding: 0;
-    cursor: pointer;
-}
-
-form {
-    display: inline-flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
 }
 .voltarHome {
@@ -490,25 +437,16 @@ form {
         margin: 0 auto;
     }
 
-    .container .boxone{
-        width: 90%;
-        margin: 30px 0 25px 5%;
-    }
-    .container .boxone span{
-        margin: 0 0 0 0;
-    }
-
     .container span{
-        width: 100%;
-        margin: 30px 0 0 10%;
+        margin: 30px 0 0 5%;
     }
 
-    .container section{
-        margin-bottom: 25px;
+    .container section span{
+        margin: 0 0 25px 0;
     }
 
     .container ul{
-        width: 100%;
+        width: 90%;
         margin: 0 auto;
         flex-direction: column;
     }
@@ -527,21 +465,13 @@ form {
 @media ( max-width: 1100px){
     .containerQuizzCreator, .containerQuizzCreatorPerguntas, .containerNiveisQuizzCreator{
         width: 100%;
-        overflow-x: hidden;
     }
-        
-    input {
-        width: 90%;
-    }
-
-    .caixinhaperguntas{
+    form {
         width: 100%;
     }
-
-    .nomePart{
-        padding-left: 5%;
-    }
-
+    input {
+    width: 95%;
+}
     .quizzCreator1, .quizzCreator2, .quizzCreator3, .quizzCreator4, .imgFim{
         width: 90%;
     }
